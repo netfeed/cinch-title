@@ -1,0 +1,18 @@
+= cinch-title
+
+A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted to the channels.
+
+== Usage
+
+  bot = Cinch::Bot.new do
+    configure do |c|
+      c.nick = "HTMLBot"
+      c.server = "irc.freenode.org"
+      c.channels = ["#cinchbots"]
+      c.plugins.plugins = [Cinch::Plugins::Netfeed::HTMLTitle]
+    end
+  end
+
+== Copyright
+
+Copyright (c) 2010 Victor Bergöö. See LICENSE for details.
