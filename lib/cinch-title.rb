@@ -18,10 +18,17 @@ module Cinch
         
         def execute m, message
           suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
+          ignore = config["ignore"] || []
 
           URI.extract(message) do |uri|
             begin
+              ignore.each do |re| 
+                raise ArgumentError.new "dang it" if uri =~ /#{re}/
+              end
+              
               m.reply "#{m.user.nick}#{suffix} URL: #{parse(uri)}"
+            rescue ArgumentError => e
+              next
             rescue URI::InvalidURIError => e
               m.reply "invalid url: #{uri}"
             end
