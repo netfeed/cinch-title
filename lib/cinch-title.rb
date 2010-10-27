@@ -7,6 +7,7 @@ require 'cinch'
 require 'nokogiri'
 require 'httpclient'
 require 'uri'
+require 'cgi'
 
 module Cinch
   module Plugins
@@ -18,7 +19,9 @@ module Cinch
         
         def execute m, message
           suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
-          ignore = config["ignore"] || []
+
+          ignore = []
+          ignore = config["ignore"] if config.key? "ignore"
 
           URI.extract(message) do |uri|
             begin
@@ -37,10 +40,11 @@ module Cinch
 
         def parse uri
           client = HTTPClient.new
-          resp = client.get(uri)
+          content = client.get(uri).content
+          content.force_encoding "UTF-8"
           
-          html = Nokogiri::HTML(resp.content)
-          html.xpath("//head/title").first.content
+          html = Nokogiri::HTML(content, encoding="UTF-8")
+          CGI.unescape_html html.at("title").text.gsub(/\s+/, ' ')
         end
       end
     end
