@@ -23,7 +23,7 @@ module Cinch
           ignore = []
           ignore = config["ignore"] if config.key? "ignore"
 
-          URI.extract(message) do |uri|
+          URI.extract(message, ["http", "https"]) do |uri|
             begin
               ignore.each do |re| 
                 raise ArgumentError.new "dang it" if uri =~ /#{re}/
