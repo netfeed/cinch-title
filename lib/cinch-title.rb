@@ -20,8 +20,8 @@ module Cinch
         def execute m, message
           suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
 
-          ignore = []
-          ignore = config["ignore"] if config.key? "ignore"
+          ignore = ["jpg$", "jpeg$", "gif$", "png$", "bmp$"]
+          ignore << config["ignore"] if config.key? "ignore"
 
           URI.extract(message, ["http", "https"]) do |uri|
             begin
