@@ -5,7 +5,7 @@
 
 require 'cinch'
 require 'nokogiri'
-require 'httpclient'
+require 'curb'
 require 'uri'
 require 'cgi'
 
@@ -39,11 +39,8 @@ module Cinch
         end
 
         def parse uri
-          client = HTTPClient.new
-          content = client.get(uri).content
-          content.force_encoding "UTF-8"
-          
-          html = Nokogiri::HTML(content, encoding="UTF-8")
+          content = Curl::Easy.perform(uri).body_str
+          html = Nokogiri::HTML(content)
           CGI.unescape_html html.at("title").text.gsub(/\s+/, ' ')
         end
       end

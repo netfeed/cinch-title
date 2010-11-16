@@ -13,7 +13,7 @@ begin
     gem.authors = ["Victor Bergöö"]
     gem.add_dependency "cinch"
     gem.add_dependency "nokogiri"
-    gem.add_dependency "httpclient"
+    gem.add_dependency "curb"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
