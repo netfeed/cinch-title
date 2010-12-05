@@ -41,7 +41,10 @@ module Cinch
         def parse uri
           content = Curl::Easy.perform(uri).body_str
           html = Nokogiri::HTML(content)
-          CGI.unescape_html html.at("title").text.gsub(/\s+/, ' ')
+          title = html.at("title")
+
+          return "No title" if title.nil?
+          CGI.unescape_html title.text.gsub(/\s+/, ' ')
         end
       end
     end
