@@ -4,12 +4,15 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
 
 == Usage
 
+  require 'cinch'
+  require 'cinch/plugins/title'
+  
   bot = Cinch::Bot.new do
     configure do |c|
       c.nick = "HTMLBot"
       c.server = "irc.freenode.org"
       c.channels = ["#cinchbots"]
-      c.plugins.plugins = [Cinch::Plugins::Netfeed::HTMLTitle]
+      c.plugins.plugins = [Cinch::Plugins::Title]
       c.plugins.options = {
         Cinch::Plugins::Netfeed::HTMLTitle => {
           "ignore" => [
@@ -19,6 +22,8 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
       }
     end
   end
+  
+  bot.start
   
 === Options
 
