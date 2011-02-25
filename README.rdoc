@@ -28,6 +28,7 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
 === Options
 
 ignore: a list of regexps of URI:S that should be ignored
+max_redirects: redirects until a non-redirect is found if not set, or set it to the max number of redirects you want the plugin to follow
 
 == Copyright
 

@@ -33,8 +33,11 @@ module Cinch
       private
 
       def parse uri
-        content = Curl::Easy.perform(uri).body_str
-        html = Nokogiri::HTML(content)
+        call = Curl::Easy.perform(uri) do |easy| 
+          easy.follow_location = true
+          easy.max_redirects = config["max_redirects"]
+        end
+        html = Nokogiri::HTML(call.body_str)
         title = html.xpath('//title').first
         
         return "No title" if title.nil?
