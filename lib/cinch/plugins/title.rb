@@ -38,7 +38,7 @@ module Cinch
           easy.max_redirects = config["max_redirects"]
         end
         html = Nokogiri::HTML(call.body_str)
-        title = html.xpath('//title').first
+        title = html.at_xpath('//title')
         
         return "No title" if title.nil?
         CGI.unescape_html title.text.gsub(/\s+/, ' ')
