@@ -23,7 +23,8 @@ module Cinch
           begin
             next if ignore uri
             
-            m.reply "#{m.user.nick}#{suffix} URL: #{parse(uri)}"
+            title = parse(uri)
+            m.reply "#{m.user.nick}#{suffix} URL: #{title}"
           rescue URI::InvalidURIError => e
             m.reply "invalid url: #{uri}"
           end
