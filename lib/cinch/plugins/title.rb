@@ -47,7 +47,7 @@ module Cinch
       
       def ignore uri
         ignore = ["jpg$", "JPG$", "jpeg$", "gif$", "png$", "bmp$", "pdf$", "jpe$"]
-        ignore += config["ignore"] if config.key? "ignore"
+        ignore.concat(config["ignore"]) if config.key? "ignore"
         
         ignore.each do |re|
           return true if uri =~ /#{re}/
