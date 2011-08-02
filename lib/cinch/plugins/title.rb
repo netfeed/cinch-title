@@ -34,6 +34,9 @@ module Cinch
       private
 
       def parse uri
+        uri.gsub! "#!", "?_escaped_fragment_=" if uri.include? "#!"
+        uri.gsub! /#.+$/, "" if uri.include? "#"
+        
         call = Curl::Easy.perform(uri) do |easy| 
           easy.follow_location = true
           easy.max_redirects = config["max_redirects"]
