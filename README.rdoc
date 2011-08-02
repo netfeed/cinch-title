@@ -14,7 +14,7 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
       c.channels = ["#cinchbots"]
       c.plugins.plugins = [Cinch::Plugins::Title]
       c.plugins.options = {
-        Cinch::Plugins::Netfeed::HTMLTitle => {
+        Cinch::Plugins::Title => {
           "ignore" => [
             "facebook.com"
           ]
