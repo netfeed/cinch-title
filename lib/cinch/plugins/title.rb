@@ -17,16 +17,13 @@ module Cinch
       match /(.*http.*)/, :use_prefix => false
       
       def execute m, message
-        suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
-
         URI.extract(message, ["http", "https"]) do |uri|
           begin
             next if ignore uri
             
-            title = parse(uri)
-            m.reply "#{m.user.nick}#{suffix} URL: #{title}"
+            m.reply parse(uri)
           rescue URI::InvalidURIError => e
-            m.reply "invalid url: #{uri}"
+            m.reply "Invalid url: #{uri}"
           end
         end
       end
