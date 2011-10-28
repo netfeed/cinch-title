@@ -21,11 +21,21 @@ module Cinch
           begin
             next if ignore uri
             
-            m.reply parse(uri)
+            m.reply response(m, parse(uri))
           rescue URI::InvalidURIError => e
-            m.reply "Invalid url: #{uri}"
+            m.reply response_invalid(m, uri)
           end
         end
+      rescue
+        puts "URL doesn't exist or can't be accessed."
+      end
+      
+      def response m, uri
+        uri
+      end
+      
+      def response_invalid m, uri
+        "Invalid url: #{uri}"
       end
 
       private
@@ -38,6 +48,7 @@ module Cinch
           easy.follow_location = true
           easy.max_redirects = config["max_redirects"]
         end
+        
         html = Nokogiri::HTML(call.body_str)
         title = html.at_xpath('//title')
         
