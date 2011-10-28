@@ -30,8 +30,9 @@ module Cinch
         puts "URL doesn't exist or can't be accessed."
       end
       
-      def response m, uri
-        uri
+      def response m, title
+        suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
+        "#{m.user.nick}#{suffix} URL: #{title}"
       end
       
       def response_invalid m, uri
