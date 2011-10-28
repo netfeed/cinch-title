@@ -17,18 +17,25 @@ module Cinch
       match /(.*http.*)/, :use_prefix => false
       
       def execute m, message
-        suffix =  m.user.nick[-1] == 's' ? "'" : "'s"
-
         URI.extract(message, ["http", "https"]) do |uri|
           begin
             next if ignore uri
             
-            title = parse(uri)
-            m.reply "#{m.user.nick}#{suffix} URL: #{title}"
+            m.reply response(m, parse(uri))
           rescue URI::InvalidURIError => e
-            m.reply "invalid url: #{uri}"
+            m.reply response_invalid(m, uri)
           end
         end
+      rescue
+        puts "URL doesn't exist or can't be accessed."
+      end
+      
+      def response m, uri
+        uri
+      end
+      
+      def response_invalid m, uri
+        "Invalid url: #{uri}"
       end
 
       private
@@ -41,6 +48,7 @@ module Cinch
           easy.follow_location = true
           easy.max_redirects = config["max_redirects"]
         end
+        
         html = Nokogiri::HTML(call.body_str)
         title = html.at_xpath('//title')
         
