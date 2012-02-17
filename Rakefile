@@ -10,7 +10,7 @@ begin
     gem.description = %Q{Plugin for the irc-framework Cinch to output HTML-titles}
     gem.email = "victor.bergoo@gmail.com"
     gem.homepage = "http://github.com/netfeed/cinch-title"
-    gem.authors = ["Victor Bergöö"]
+    gem.authors = ["Victor Bergoo"]
     gem.files = ["lib/**/*.rb", "README.rdoc", "LICENSE"]
     gem.add_dependency "cinch"
     gem.add_dependency "nokogiri"
