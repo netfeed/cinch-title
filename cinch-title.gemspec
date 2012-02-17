@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cinch-title}
-  s.version = "0.3.0"
+  s.name = "cinch-title"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Victor Bergöö}]
-  s.date = %q{2011-10-28}
-  s.description = %q{Plugin for the irc-framework Cinch to output HTML-titles}
-  s.email = %q{victor.bergoo@gmail.com}
+  s.authors = ["Victor Bergoo"]
+  s.date = "2012-02-17"
+  s.description = "Plugin for the irc-framework Cinch to output HTML-titles"
+  s.email = "victor.bergoo@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "lib/cinch/plugins/title.rb"
   ]
-  s.homepage = %q{http://github.com/netfeed/cinch-title}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{Plugin for Cinch to output HTML-titles}
+  s.homepage = "http://github.com/netfeed/cinch-title"
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "Plugin for Cinch to output HTML-titles"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
