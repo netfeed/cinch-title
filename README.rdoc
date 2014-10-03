@@ -17,7 +17,9 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
         Cinch::Plugins::Title => {
           "ignore" => [
             "facebook.com"
-          ]
+          ],
+          "max_redirects" => 5,
+          "user_agent" => "cinch-title/0.3.1"
         }
       }
     end
@@ -28,7 +30,10 @@ A plugin for the Cinch ircbot framework to output HTML-titles for URL:s posted t
 === Options
 
 ignore: a list of regexps of URI:S that should be ignored
+
 max_redirects: redirects until a non-redirect is found if not set, or set it to the max number of redirects you want the plugin to follow
+
+user_agent: An optional user agent for the requests. Some sites do not like an empty user agent (which is curb's default).
 
 == Copyright
 
