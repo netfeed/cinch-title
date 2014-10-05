@@ -3,6 +3,16 @@ require 'cinch/plugins/title'
 
 version = version = File.new("VERSION", 'r').read.chomp
 
+class Cinch::Plugins::Title
+  def response(m, uri)
+    "#{m.user.nick}: #{uri}"
+  end
+
+  def response_invalid(m, uri)
+    "Invalid url: #{uri}"
+  end
+end
+
 bot = Cinch::Bot.new do
   configure do |c|
     c.nick = "HTMLBot"
