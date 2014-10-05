@@ -48,7 +48,7 @@ module Cinch
         call = Curl::Easy.perform(uri) do |easy| 
           easy.follow_location = true
           easy.max_redirects = config["max_redirects"]
-          easy.headers["User-Agent"] = config["user_agent"]
+          easy.headers["User-Agent"] = config["user_agent"] || 'cinch'
         end
         
         html = Nokogiri::HTML(call.body_str)
