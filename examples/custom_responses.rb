@@ -1,16 +1,7 @@
 require 'cinch'
-#require 'cinch/plugins/title'
-require_relative "../lib/cinch/plugins/title.rb"
+require 'cinch/plugins/title'
 
-class Cinch::Plugins::Title
-  def response(m, uri)
-    "#{m.user.nick}: #{uri}"
-  end
-  
-  def response_invalid(m, uri)
-    "Invalid url: #{uri}"
-  end
-end
+version = version = File.new("VERSION", 'r').read.chomp
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -22,7 +13,8 @@ bot = Cinch::Bot.new do
       Cinch::Plugins::Title => {
         "ignore" => [
           "facebook.com"
-        ]
+        ],
+        "user_agent" => 'cinch-title/' + version
       }
     }
   end
